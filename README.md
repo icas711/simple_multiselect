@@ -1,7 +1,8 @@
 # Simple Multi Select
 
 Flutter package for multi-select UI widget
-[Screen_recording_20250209_000824.webm](https://github.com/user-attachments/assets/91e0a5bf-b974-4887-a2e5-75a903c7c68a)
+![Screen_recording_20250209_000824](https://github.com/user-attachments/assets/0715b868-fb6b-4fa3-a00b-14d9c4cc35f2)
+
 
 ## Features
 
