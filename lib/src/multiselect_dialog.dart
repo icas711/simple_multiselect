@@ -10,51 +10,70 @@ class MultiSelectDialog<T extends Object> extends StatelessWidget {
   final TextStyle labelStyle;
   final Color? inactiveColor;
   final Color? activeColor;
+  final String? closeButtonText;
 
-  const MultiSelectDialog(
-      {super.key,
-        this.items,
-        this.initialSelectedValues,
-        this.title,
-        this.labelStyle = const TextStyle(),
-        this.activeColor,
-        this.inactiveColor});
+  const MultiSelectDialog({
+    super.key,
+
+    this.items,
+    this.initialSelectedValues,
+    this.title,
+    this.labelStyle = const TextStyle(),
+    this.activeColor,
+    this.inactiveColor,
+    this.closeButtonText,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SelectorProvider>(builder: (context, provider, _) {
-      final selectedValues = provider.selectedItems;
-      final listItems = items!.map((item) {
-        final checked = selectedValues.contains(item);
-        return LayoutBuilder(builder: (context, constraints) {
-          return InkWell(
-            onTap: () {
-              if (checked) {
-                provider.remove(item);
-              } else {
-                provider.add(item);
-              }
-            },
-            child: Container(
-              width: constraints.maxWidth,
-              padding: const EdgeInsets.all(8),
-              decoration:
-              BoxDecoration(color: checked ? activeColor : inactiveColor),
-              child: Padding(
+    return Consumer<SelectorProvider>(
+      builder: (context, provider, _) {
+        final selectedValues = provider.selectedItems;
+        final listItems =
+            items!.map((item) {
+              final checked = selectedValues.contains(item);
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return InkWell(
+                    onTap: () {
+                      if (checked) {
+                        provider.remove(item);
+                      } else {
+                        provider.add(item);
+                      }
+                    },
+                    child: Container(
+                      width: constraints.maxWidth,
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: checked ? activeColor : inactiveColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(item.toString(), style: labelStyle),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList();
+
+        return Column(
+          children: [
+            Expanded(child: ListView(children: listItems)),
+            if (closeButtonText != null)
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  item.toString(),
-                  style: labelStyle,
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(closeButtonText!),
+                  ),
                 ),
               ),
-            ),
-          );
-        });
-      }).toList();
-
-      return ListView(
-        children: listItems,
-      );
-    });
+          ],
+        );
+      },
+    );
   }
 }

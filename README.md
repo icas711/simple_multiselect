@@ -1,39 +1,66 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Simple Multi Select
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Flutter package for multi-select UI widget
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Accepts custom input data.
+- Data is updated when selected.
+- BottomSheet.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Add the package into `pubspec.yaml`
+
+```yaml
+dependencies:
+  simple_multiselect:
+```
+
+- Import in your code
+
+```dart
+import 'package:flutter_multiselect/flutter_multiselect.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Create class with data and override method "toString()"
+If need to display only name, example: 
 
 ```dart
-const like = 'sample';
+class User {
+  final String id;
+  final String title;
+  final String email;
+
+  const User({required this.id, required this.title, required this.email});
+
+  @override
+  String toString() {
+    return title;
+  }
+}
+```
+Decorate the widget as needed.
+Add the DropDownMultiSelect widget to your build method:
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+    border: Border.all(color: Colors.black),
+  ),
+  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+  child: SimpleMultiselect<User>(
+    labelBackgroundColor: Colors.lightGreen.shade300,
+    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+    dataSource: users,
+    onChange: (value) => print(value),
+    closeButtonText: 'Close',
+  ),
+)
+}
 ```
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.

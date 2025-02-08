@@ -6,9 +6,9 @@ import 'multiselect_dialog.dart';
 import 'selector_provider.dart';
 import 'num.dart';
 
-class MultiSelectField<T extends Object> extends StatelessWidget {
+class SimpleMultiselect<T extends Object> extends StatelessWidget {
   ///Multi select widget from selectable list
-  const MultiSelectField({
+  const SimpleMultiselect({
     super.key,
     this.hintWidget = const Text('Choose items'),
     required this.dataSource,
@@ -21,6 +21,7 @@ class MultiSelectField<T extends Object> extends StatelessWidget {
     this.modalHeight = 0.7,
     this.activeColor = const Color(0xFFCCCCCC),
     this.inactiveColor = Colors.transparent,
+    this.closeButtonText,
     required this.onChange,
   });
 
@@ -64,6 +65,12 @@ class MultiSelectField<T extends Object> extends StatelessWidget {
   ///Set style of text in selectable list
   final TextStyle? labelStyle;
 
+  ///Text close button
+  ///if null button is not showing
+  ///Style theme of [ElevatedButton]
+
+  final String? closeButtonText;
+
   final void Function(List<Object>) onChange;
   @override
   Widget build(BuildContext context) {
@@ -90,6 +97,7 @@ class MultiSelectField<T extends Object> extends StatelessWidget {
                     labelStyle: dialogTextStyle,
                     activeColor: activeColor,
                     inactiveColor: inactiveColor,
+                    closeButtonText: closeButtonText,
                   ),
                 ),
               );
