@@ -1,11 +1,10 @@
 name: simple_multiselect
 description: "A Flutter package for simple creating multi select widgets."
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:
-  sdk: ^3.7.0-312.0.dev
-  flutter: ">=1.17.0"
+  sdk: '>=2.18.0 <4.0.0'
 
 dependencies:
   flutter:
