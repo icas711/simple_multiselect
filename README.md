@@ -49,7 +49,7 @@ class User {
 }
 ```
 Decorate the widget as needed.
-Add the DropDownMultiSelect widget to your build method:
+Add the SimpleMultiselect widget to your build method:
 
 ```dart
 Container(
