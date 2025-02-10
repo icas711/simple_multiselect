@@ -1,6 +1,6 @@
 name: simple_multiselect
 description: "A Flutter package for simple creating multi select widgets. The field refresh real-time on tap the list element."
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/icas711/simple_multiselect
 
 environment:

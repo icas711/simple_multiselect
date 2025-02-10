@@ -6,3 +6,7 @@
  
 - added feature to use CheckBox
 - added feature to select all
+
+## 0.1.1
+
+- added gif to README.md
