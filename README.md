@@ -10,9 +10,11 @@ https://github.com/user-attachments/assets/76a1b68e-54e3-4ce8-ae94-dee7420e1323
 
 ## Features
 
-- Accepts custom input data.
-- Data is updated when selected.
-- BottomSheet.
+- Accepts custom input data
+- Data is updated when selected
+- BottomSheet
+- Select all
+- With or without checkbox
 
 ## Getting started
 
@@ -65,6 +67,8 @@ Container(
     dataSource: users,
     onChange: (value) => print(value),
     closeButtonText: 'Close',
+    selectAllTitle: 'Select All',
+    checkBox: true,
   ),
 )
 }

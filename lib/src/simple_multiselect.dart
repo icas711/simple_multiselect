@@ -22,6 +22,8 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
     this.activeColor = const Color(0xFFCCCCCC),
     this.inactiveColor = Colors.transparent,
     this.closeButtonText,
+    this.selectAllTitle,
+    this.checkBox=false,
     required this.onChange,
   });
 
@@ -36,7 +38,7 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
   ///String toString() {
   ///     return title;
   ///   }
-  final List<T>? dataSource;
+  final List<T> dataSource;
 
   ///Label background color
   final Color? labelBackgroundColor;
@@ -71,10 +73,24 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
 
   final String? closeButtonText;
 
-  final void Function(List<Object>) onChange;
+  ///Return selected list
+  final void Function(List<T>) onChange;
+
+  ///Select all elements
+  ///Input [String] title
+  ///if title is not null, list has a item "Select All"
+  ///When press modal window close and
+  ///return empty list or full [dataSourse]
+
+  final String? selectAllTitle;
+
+  ///Default - false
+  ///Without checkBox
+  final bool checkBox;
+
   @override
   Widget build(BuildContext context) {
-    final SelectorProvider selectorProvider = SelectorProvider(onChange);
+    final SelectorProvider<T> selectorProvider = SelectorProvider(onChange);
     return ChangeNotifierProvider<SelectorProvider>.value(
       value: selectorProvider,
       child: InkWell(
@@ -98,6 +114,8 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
                     activeColor: activeColor,
                     inactiveColor: inactiveColor,
                     closeButtonText: closeButtonText,
+                    selectAllTitle: selectAllTitle,
+                    checkBox: checkBox,
                   ),
                 ),
               );
@@ -108,13 +126,13 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
           decoration: const InputDecoration(
             border: InputBorder.none,
           ),
-          child: Consumer<SelectorProvider>(builder: (context, items, _) {
+          child: Consumer<SelectorProvider>(builder: (context, provider, _) {
             return SingleChildScrollView(
-              child: items.selectedItems.isNotEmpty
+              child: provider.selectedItems.isNotEmpty
                   ? Wrap(
                       spacing: 28.0,
                       runSpacing: 8.0,
-                      children: items.selectedItems
+                      children: provider.selectedItems
                           .map(
                             (e) => Container(
                               decoration: BoxDecoration(
@@ -135,7 +153,7 @@ class SimpleMultiselect<T extends Object> extends StatelessWidget {
                                   const SizedBox(width: 8),
                                   IconButton(
                                     onPressed: () {
-                                      items.remove(e);
+                                      provider.remove(e);
                                     },
                                     icon: const Icon(CupertinoIcons.clear),
                                   ),

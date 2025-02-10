@@ -20,4 +20,18 @@ class SelectorProvider<T extends Object> extends ChangeNotifier {
     notifyListeners();
     func(_selectedItems);
   }
+
+  void clear() {
+    _selectedItems.clear();
+    notifyListeners();
+    func(_selectedItems);
+  }
+
+  void addAll(List<T> items) {
+    _selectedItems.clear();
+    _selectedItems.addAll(items);
+    notifyListeners();
+    func(_selectedItems);
+  }
+
 }
