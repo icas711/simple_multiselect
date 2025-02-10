@@ -2,11 +2,7 @@
 
 Flutter package for multi-select UI widget
 
-![demo_simple_multiselect](https://github.com/user-attachments/assets/c7253d59-aa8a-42be-a1e1-e571c247d896)
-
-
-![demo_simple_multiselect2](https://github.com/user-attachments/assets/89055f0e-1c4a-4c9f-be78-5dd4bc765240)
-
+![demo_simple_multiselect](https://github.com/user-attachments/assets/c7253d59-aa8a-42be-a1e1-e571c247d896) ![demo_simple_multiselect2](https://github.com/user-attachments/assets/89055f0e-1c4a-4c9f-be78-5dd4bc765240)
 
 
 ## Features
